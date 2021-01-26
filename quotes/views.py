@@ -20,12 +20,12 @@ def home(request):
         api_request = requests.get(
             "https://sandbox.iexapis.com/stable/stock/"
             + ticker
-            + "/quote?token=Tpk_1ffd0fa5cbb241889288941e2f4e0e0f"
+            + "/chart/1m?token=Tpk_1ffd0fa5cbb241889288941e2f4e0e0f"
         )
         try:
             api = json.loads(api_request.content)
             plt.switch_backend('agg')
-            plt.plot([15, 16, 17, 22],[api.get('open') ,api.get('low') , api.get('high'),api.get('close') ])
+            plt.plot([15, 16, 17, 22],[api[0].get('open') ,api[0].get('low') , api[0].get('high'),api[0].get('close') ])
             plt.ylabel('P R I C E I N $')
             plt.xlabel('TIME')
             fig = plt.gcf()
